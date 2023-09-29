@@ -23,7 +23,7 @@ jobs:
     - name: Install Dependency
       run: yarn install
     - name: SonarQube Scan
-      uses: kitabisa/sonarqube-action@v1.2.0
+      uses: sonarsource/sonarqube-scan-action@master
       with:
         host: ${{ secrets.SONAR_HOST }}
         login: ${{ secrets.SONAR_TOKEN }}
