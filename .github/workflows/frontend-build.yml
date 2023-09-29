@@ -24,7 +24,9 @@ jobs:
       run: yarn install
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        host: ${{ secrets.SONAR_HOST }}
-        login: ${{ secrets.SONAR_TOKEN }}
+        projectBaseDir: frontend/src
   
