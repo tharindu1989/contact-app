@@ -36,8 +36,22 @@ jobs:
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Docker build
       run: docker compose build
-    - name: Docker upload SQL database
-      run: docker compose push
+
+    - name: Docker tag database
+      run: docker tag contact-app-database ${{ secrets.DOCKER_USERNAME }}/contact-app-database:latest
+    - name: Docker push database
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app-database:latest   
+      
+    - name: Docker tag frontend
+      run: docker tag contact-app ${{ secrets.DOCKER_USERNAME }}/contact-app:latest
+    - name: Docker push frontend
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app:latest
+
+    - name: Docker tag backend
+      run: docker tag contact-app-backend ${{ secrets.DOCKER_USERNAME }}/contact-app-backend:latest
+    - name: Docker push backend
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app-backend:latest   
+
     # - name: Docker upload backend
     #   run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app-backend:latest
     # - name: Docker upload frontend
