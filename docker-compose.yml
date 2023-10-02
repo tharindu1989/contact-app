@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   mysqldb:
-    image: "contact-app:latest"
+    container_name: database
+    build: database/
     restart: always
     ports:
       - 3306:3306
@@ -17,8 +18,7 @@ services:
       retries: 10
       
   backend:
-    container_name: contact-backend
-    image: "contact-app:latest"
+    container_name: backend
     restart: always
     build: backend/
     ports:
@@ -30,7 +30,7 @@ services:
         condition: service_healthy
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/user-management?allowPublicKeyRetrieval=true&useSSL=false",
+        "spring.datasource.url"  : "jdbc:mysql://database:3306/user-management?allowPublicKeyRetrieval=true&useSSL=false",
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "admin",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
@@ -38,8 +38,7 @@ services:
         }'
 
   frontend:
-    container_name: contact-frontend
-    image: "contact-app:latest"
+    container_name: frontend
     build: frontend/
     ports:
       - "3000:3000"
