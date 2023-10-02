@@ -1,0 +1,6 @@
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=admin
+ENV MYSQL_DATABASE=user-management
+
+EXPOSE 3306
