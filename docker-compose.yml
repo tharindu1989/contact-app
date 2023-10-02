@@ -3,15 +3,15 @@ version: '3.8'
 services:
   mysqldb:
     container_name: database
-    build: database/
+    image: tharindu1989/contact-app-database
     restart: always
     ports:
       - 3306:3306
     networks:
       - contact-management-network
-    environment:
-      MYSQL_DATABASE: user-management
-      MYSQL_ROOT_PASSWORD: admin
+    # environment:
+    #   MYSQL_DATABASE: user-management
+    #   MYSQL_ROOT_PASSWORD: admin
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
@@ -20,7 +20,7 @@ services:
   backend:
     container_name: backend
     restart: always
-    build: backend/
+    image: tharindu1989/contact-app-backend
     ports:
       - "8080:8080"
     networks:
@@ -39,7 +39,7 @@ services:
 
   frontend:
     container_name: frontend
-    build: frontend/
+    image: tharindu1989/contact-app
     ports:
       - "3000:3000"
     networks:
