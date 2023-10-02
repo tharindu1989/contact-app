@@ -38,12 +38,12 @@ jobs:
       run: docker compose build
 
     - name: Docker tag database
-      run: docker tag contact-app-database ${{ secrets.DOCKER_USERNAME }}/contact-app-database:latest
+      run: docker tag contact-app-mysqldb ${{ secrets.DOCKER_USERNAME }}/contact-app-database:latest
     - name: Docker push database
       run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app-database:latest   
       
     - name: Docker tag frontend
-      run: docker tag contact-app ${{ secrets.DOCKER_USERNAME }}/contact-app:latest
+      run: docker tag contact-app-frontend ${{ secrets.DOCKER_USERNAME }}/contact-app:latest
     - name: Docker push frontend
       run: docker push ${{ secrets.DOCKER_USERNAME }}/contact-app:latest
 
