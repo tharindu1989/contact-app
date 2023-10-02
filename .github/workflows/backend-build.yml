@@ -20,8 +20,6 @@ jobs:
       with:
       # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
-    - name: Create docker image
-      run: 
     # - name: SonarQube Scan
     #   uses: sonarsource/sonarqube-scan-action@master
     #   env:
