@@ -6,7 +6,6 @@ on:
       - main
     paths: 
       - "backend/**"
-      - "database/**"
       - ".github/workflows/backend-build.yml"
   pull_request:
       types: [opened, synchronize, reopened]
